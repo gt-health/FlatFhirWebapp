@@ -1,0 +1,217 @@
+{
+  "profiles": {
+    "Autopsy Performed Indicator.valueCodeableConcept.coding": {
+      "Aut": {
+        "code": "Y",
+        "display": "Yes",
+        "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+      },
+      "Ext": {
+        "code": "N",
+        "display": "No",
+        "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+      },
+      "autopsy": {
+        "code": "Y",
+        "display": "Yes",
+        "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+      },
+      "external": {
+        "code": "N",
+        "display": "No",
+        "system": "http://terminology.hl7.org/CodeSystem/v2-0136"
+      },
+      "local_def": "data.morgue_type_of_exam"
+    },
+    "Cause Of Death Condition.code.text": {
+      "local_def": "data.cause_of_death"
+    },
+    "Condition Contributing to Death.code.text": {
+      "local_def": "data.contributing_factor"
+    },
+    "Death Date.effectiveDateTime": {
+      "local_def": "data.decedent.datetime_of_death"
+    },
+    "Decedent Age.valueQuantity.unit": {
+      "local_def": "data.decedent.age.unit"
+    },
+    "Decedent Age.valueQuantity.value": {
+      "local_def": "data.decedent.age.value"
+    },
+    "Decedent.address": [
+      {
+        "line": [
+          {
+            "local_def": "data.decedent.address.line"
+          }
+        ],
+        "postalCode": {
+          "local_def": "data.decedent.address.zip"
+        }
+      }
+    ],
+    "Decedent.birthDate": {
+      "local_def": "data.decedent.date_of_birth"
+    },
+    "Decedent.ethnicity.extension.valueCoding": {
+      "H": {
+        "code": "2135-2",
+        "display": "Hispanic or Latino",
+        "system": "urn:oid:2.16.840.1.113883.6.238"
+      },
+      "U": {
+        "code": "UNK",
+        "display": "Unknown",
+        "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+      },
+      "local_def": "data.decedent.race"
+    },
+    "Decedent.gender.code": {
+      "F": {
+        "code": "female",
+        "display": "Female",
+        "system": "http://hl7.org/fhir/administrative-gender"
+      },
+      "M": {
+        "code": "male",
+        "display": "Male",
+        "system": "http://hl7.org/fhir/administrative-gender"
+      },
+      "U": {
+        "code": "unknown",
+        "display": "Unknown",
+        "system": "http://hl7.org/fhir/administrative-gender"
+      },
+      "local_def": "data.decedent.sex"
+    },
+    "Decedent.name.family": {
+      "local_def": "data.decedent.name.last"
+    },
+    "Decedent.name.given": [
+      {
+        "local_def": "data.decedent.name.first"
+      },
+      {
+        "local_def": "data.decedent.name.middle"
+      }
+    ],
+    "Decedent.name.suffix": [
+      {
+        "local_def": "data.decedent.name.suffix"
+      }
+    ],
+    "Decedent.race.extension.valueCoding": {
+      "A": {
+        "code": "2028-9",
+        "display": "Asian",
+        "system": "urn:oid:2.16.840.1.113883.6.238"
+      },
+      "B": {
+        "code": "2054-5",
+        "display": "Black or African American",
+        "system": "urn:oid:2.16.840.1.113883.6.238"
+      },
+      "I": {
+        "code": "1002-5",
+        "display": "American Indian or Alaska Native",
+        "system": "urn:oid:2.16.840.1.113883.6.238"
+      },
+      "O": {
+        "code": "UNK",
+        "display": "Unknown",
+        "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+      },
+      "U": {
+        "code": "UNK",
+        "display": "Unknown",
+        "system": "http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+      },
+      "W": {
+        "code": "2106-3",
+        "display": "White",
+        "system": "urn:oid:2.16.840.1.113883.6.238"
+      },
+      "local_def": "data.decedent.race"
+    },
+    "Injury Incident.effectiveDateTime": {
+      "local_def": "data.datetime_of_injury"
+    },
+    "Injury Incident.valueString": {
+      "local_def": "data.detail_of_injury"
+    },
+    "Injury Location.address.postalCode": {
+      "local_def": "data.place_of_injury.zip"
+    },
+    "Injury Location.address.text": {
+      "local_def": "data.place_of_injury.address"
+    },
+    "Manner of Death.valueCodeableConcept.coding": {
+      "Accident": {
+        "code": "7878000",
+        "display": "Accident",
+        "system": "http://snomed.info/sct"
+      },
+      "Homicide": {
+        "code": "27935005",
+        "display": "Homicide",
+        "system": "http://snomed.info/sct"
+      },
+      "Natural": {
+        "code": "38605008",
+        "display": "Natural",
+        "system": "http://snomed.info/sct"
+      },
+      "Pending Investigation": {
+        "code": "185973002",
+        "display": "Pending Investigation",
+        "system": "http://snomed.info/sct"
+      },
+      "Suicide": {
+        "code": "44301001",
+        "display": "Suicide",
+        "system": "http://snomed.info/sct"
+      },
+      "Undetermined": {
+        "code": "65037004",
+        "display": "Could not be determined",
+        "system": "http://snomed.info/sct"
+      },
+      "local_def": "data.manner_of_death"
+    }
+  },
+  "info": {
+    "fhir_version": "STU3",
+    "local_dataset": "UAB",
+    "url": "http://hl7.org/fhir/us/vrdr/2019May/",
+    "version": "v0.1.0: STU 1 Ballot 1"
+  },
+    "data": {
+    "cause_of_death": "",
+    "contributing_factor": "",
+    "decedent": {
+      "address": {
+        "line": "987 Johnson Trail",
+        "zip": "35777"
+      },
+      "age": 59,
+      "date_of_birth": "1960-01-01",
+      "datetime_of_death": "2017-12-28T22:10:00",
+      "name": {
+        "first": "John",
+        "last": "Doe",
+        "middle": ""
+      },
+      "race": "W",
+      "sex": "M"
+    },
+    "datetime_of_injury": "2017-12-28T00:00:00",
+    "detail_of_injury": "not available",
+    "manner_of_death": "Homicide",
+    "morgue_type_of_exam": "Aut",
+    "pathologist": "Gregory G. Davis",
+    "place_of_injury": {
+      "address": "alley behind convenience store 456 Moss Road",
+      "zip": "3577"
+    }
+  }
+}
