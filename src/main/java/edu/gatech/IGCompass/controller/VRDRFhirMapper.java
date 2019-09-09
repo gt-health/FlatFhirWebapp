@@ -1,12 +1,8 @@
-package edu.gatech.IGFlatFhir.controller;
+package edu.gatech.IGCompass.controller;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Map;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -15,22 +11,17 @@ import javax.ws.rs.core.MediaType;
 import org.hl7.fhir.dstu3.model.Bundle.BundleEntryComponent;
 import org.hl7.fhir.dstu3.model.Composition.CompositionAttestationMode;
 import org.hl7.fhir.dstu3.model.Composition.CompositionAttesterComponent;
-import org.hl7.fhir.dstu3.model.Composition.SectionComponent;
 import org.hl7.fhir.dstu3.model.Reference;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import edu.gatech.IGFlatFhir.exception.MissingDataNodeException;
-import edu.gatech.IGFlatFhir.exception.MissingInformationException;
-import edu.gatech.IGFlatFhir.exception.MissingKeyException;
-import edu.gatech.IGFlatFhir.exception.PathFormatException;
-import edu.gatech.IGFlatFhir.exception.WrongTypeException;
-import edu.gatech.IGFlatFhir.model.Data;
-import edu.gatech.IGFlatFhir.model.IGMapDocument;
-import edu.gatech.IGFlatFhir.model.Profiles;
+import edu.gatech.IGCompass.exception.MissingDataNodeException;
+import edu.gatech.IGCompass.exception.MissingInformationException;
+import edu.gatech.IGCompass.exception.MissingKeyException;
+import edu.gatech.IGCompass.exception.PathFormatException;
+import edu.gatech.IGCompass.exception.WrongTypeException;
+import edu.gatech.IGCompass.model.IGMapDocument;
 import edu.gatech.VRDR.context.VRDRFhirContext;
 import edu.gatech.VRDR.mapper.AutopsyPerformedIndicatorMapper;
 import edu.gatech.VRDR.mapper.CertifierMapper;

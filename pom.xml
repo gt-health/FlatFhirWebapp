@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.gatech</groupId>
-  <artifactId>IGFlatFhir</artifactId>
+  <artifactId>IGCompassWebapp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>IGFlatFhir</name>
-  <description>An jetty project using jacksosn to read an IGFlatFhir json file and create an internal model, converting it to </description>
+  <name>IGCompassWebapp</name>
+  <description>An jetty project using jackson to read an IGFlatFhir json file and create an internal model, converting it to </description>
   <properties>
   	<antlr4.listener>true</antlr4.listener>
   	<antlr4.visitor>true</antlr4.visitor>
@@ -96,7 +96,7 @@
     </dependency>
     <dependency>
     	<groupId>edu.gatech</groupId>
-    	<artifactId>FlatFhirModel</artifactId>
+    	<artifactId>IGCompassModel</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
