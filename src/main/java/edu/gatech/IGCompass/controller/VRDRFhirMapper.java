@@ -25,6 +25,7 @@ import edu.gatech.IGCompass.model.IGMapDocument;
 import edu.gatech.VRDR.context.VRDRFhirContext;
 import edu.gatech.VRDR.mapper.AutopsyPerformedIndicatorMapper;
 import edu.gatech.VRDR.mapper.CertifierMapper;
+import edu.gatech.VRDR.mapper.DeathDateMapper;
 import edu.gatech.VRDR.mapper.DecedentAgeMapper;
 import edu.gatech.VRDR.mapper.DecedentMapper;
 import edu.gatech.VRDR.mapper.MannerOfDeathMapper;
@@ -32,6 +33,7 @@ import edu.gatech.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.VRDR.model.Certifier;
 import edu.gatech.VRDR.model.DeathCertificate;
 import edu.gatech.VRDR.model.DeathCertificateDocument;
+import edu.gatech.VRDR.model.DeathDate;
 import edu.gatech.VRDR.model.Decedent;
 import edu.gatech.VRDR.model.DecedentAge;
 import edu.gatech.VRDR.model.MannerOfDeath;
@@ -71,7 +73,7 @@ public class VRDRFhirMapper {
 		Reference decedentReference = new Reference(decedent.getId());
 		deathCertificate.setSubject(decedentReference);
 		CommonUtil.addBundleEntry(deathRecordDocument, decedent);
-		CommonUtil.addSection(deathCertificate, decedent);
+		CommonUtil.addSectionEntry(deathCertificate, decedent);
 		
 		Certifier certifier = new CertifierMapper().map(documentObject,"");
 		Reference certifierReference = new Reference(certifier.getId());
@@ -79,25 +81,33 @@ public class VRDRFhirMapper {
 				.setParty(certifierReference)
 				.addMode(CompositionAttestationMode.LEGAL));
 		CommonUtil.addBundleEntry(deathRecordDocument, certifier);
-		CommonUtil.addSection(deathCertificate, certifier);
+		CommonUtil.addSectionEntry(deathCertificate, certifier);
 		
 		AutopsyPerformedIndicator autopsyPerformedIndicator = new AutopsyPerformedIndicatorMapper().map(documentObject, "");
 		if(autopsyPerformedIndicator != null) {
 			autopsyPerformedIndicator.setSubject(decedentReference);
 			CommonUtil.addBundleEntry(deathRecordDocument, autopsyPerformedIndicator);
-			CommonUtil.addSection(deathCertificate, autopsyPerformedIndicator);
+			CommonUtil.addSectionEntry(deathCertificate, autopsyPerformedIndicator);
 		}
+		DeathDate deathDate = new DeathDateMapper().map(documentObject,"");
+		if(deathDate != null) {
+			deathDate.addPerformer(certifierReference);
+			deathDate.setSubject(decedentReference);
+			CommonUtil.addBundleEntry(deathRecordDocument, deathDate);
+			CommonUtil.addSectionEntry(deathCertificate, deathDate);
+		}
+		
 		DecedentAge decedentAge = new DecedentAgeMapper().map(documentObject,"");
 		if(decedentAge != null) {
 			decedentAge.setSubject(decedentReference);
 			CommonUtil.addBundleEntry(deathRecordDocument, decedentAge);
-			CommonUtil.addSection(deathCertificate, decedentAge);
+			CommonUtil.addSectionEntry(deathCertificate, decedentAge);
 		}
 		MannerOfDeath mannerOfDeath = new MannerOfDeathMapper().map(documentObject,"");
 		if(mannerOfDeath != null) {
 			decedentAge.setSubject(decedentReference);
 			CommonUtil.addBundleEntry(deathRecordDocument, mannerOfDeath);
-			CommonUtil.addSection(deathCertificate, mannerOfDeath);
+			CommonUtil.addSectionEntry(deathCertificate, mannerOfDeath);
 		}
 		return deathRecordDocument;
 	}
