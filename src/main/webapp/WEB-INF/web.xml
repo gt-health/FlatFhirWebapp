@@ -14,17 +14,17 @@
   </filter-mapping>
 
   <servlet>
-   <servlet-name>IGFlatFhir</servlet-name>
+   <servlet-name>IGCompass</servlet-name>
    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
     <init-param>
      <param-name>jersey.config.server.provider.packages</param-name>
-     <param-value>edu.gatech.IGFlatFhir.controller</param-value>
+     <param-value>edu.gatech.IGCompass.controller</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
 
   <servlet-mapping>
-   <servlet-name>IGFlatFhir</servlet-name>
+   <servlet-name>IGCompass</servlet-name>
    <url-pattern>/*</url-pattern>
   </servlet-mapping>
 
