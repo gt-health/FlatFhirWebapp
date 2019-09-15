@@ -28,6 +28,7 @@ import edu.gatech.VRDR.mapper.CertifierMapper;
 import edu.gatech.VRDR.mapper.DeathDateMapper;
 import edu.gatech.VRDR.mapper.DecedentAgeMapper;
 import edu.gatech.VRDR.mapper.DecedentMapper;
+import edu.gatech.VRDR.mapper.InjuryIncidentMapper;
 import edu.gatech.VRDR.mapper.MannerOfDeathMapper;
 import edu.gatech.VRDR.model.AutopsyPerformedIndicator;
 import edu.gatech.VRDR.model.Certifier;
@@ -36,6 +37,7 @@ import edu.gatech.VRDR.model.DeathCertificateDocument;
 import edu.gatech.VRDR.model.DeathDate;
 import edu.gatech.VRDR.model.Decedent;
 import edu.gatech.VRDR.model.DecedentAge;
+import edu.gatech.VRDR.model.InjuryIncident;
 import edu.gatech.VRDR.model.MannerOfDeath;
 import edu.gatech.VRDR.model.util.CommonUtil;
 
@@ -102,6 +104,12 @@ public class VRDRFhirMapper {
 			decedentAge.setSubject(decedentReference);
 			CommonUtil.addBundleEntry(deathRecordDocument, decedentAge);
 			CommonUtil.addSectionEntry(deathCertificate, decedentAge);
+		}
+		InjuryIncident injuryIncident = new InjuryIncidentMapper().map(documentObject,"");
+		if(injuryIncident != null){
+			injuryIncident.setSubject(decedentReference);
+			CommonUtil.addBundleEntry(deathRecordDocument, injuryIncident);
+			CommonUtil.addSectionEntry(deathCertificate, injuryIncident);
 		}
 		MannerOfDeath mannerOfDeath = new MannerOfDeathMapper().map(documentObject,"");
 		if(mannerOfDeath != null) {
