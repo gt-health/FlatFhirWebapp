@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import org.hl7.fhir.dstu3.model.Bundle.BundleEntryComponent;
 import org.hl7.fhir.dstu3.model.Composition.CompositionAttestationMode;
 import org.hl7.fhir.dstu3.model.Composition.CompositionAttesterComponent;
+import org.hl7.fhir.dstu3.model.ListResource.ListEntryComponent;
 import org.hl7.fhir.dstu3.model.Reference;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +25,7 @@ import edu.gatech.IGCompass.exception.WrongTypeException;
 import edu.gatech.IGCompass.model.IGMapDocument;
 import edu.gatech.VRDR.context.VRDRFhirContext;
 import edu.gatech.VRDR.mapper.AutopsyPerformedIndicatorMapper;
+import edu.gatech.VRDR.mapper.CauseOfDeathConditionMapper;
 import edu.gatech.VRDR.mapper.CertifierMapper;
 import edu.gatech.VRDR.mapper.DeathDateMapper;
 import edu.gatech.VRDR.mapper.DecedentAgeMapper;
@@ -31,6 +33,8 @@ import edu.gatech.VRDR.mapper.DecedentMapper;
 import edu.gatech.VRDR.mapper.InjuryIncidentMapper;
 import edu.gatech.VRDR.mapper.MannerOfDeathMapper;
 import edu.gatech.VRDR.model.AutopsyPerformedIndicator;
+import edu.gatech.VRDR.model.CauseOfDeathCondition;
+import edu.gatech.VRDR.model.CauseOfDeathPathway;
 import edu.gatech.VRDR.model.Certifier;
 import edu.gatech.VRDR.model.DeathCertificate;
 import edu.gatech.VRDR.model.DeathCertificateDocument;
@@ -91,6 +95,19 @@ public class VRDRFhirMapper {
 			CommonUtil.addBundleEntry(deathRecordDocument, autopsyPerformedIndicator);
 			CommonUtil.addSectionEntry(deathCertificate, autopsyPerformedIndicator);
 		}
+		CauseOfDeathCondition causeOfDeathCondition = new CauseOfDeathConditionMapper().map(documentObject,"");
+		if(causeOfDeathCondition != null) {
+			causeOfDeathCondition.setSubject(decedentReference);
+			CommonUtil.addBundleEntry(deathRecordDocument, causeOfDeathCondition);
+			CommonUtil.addSectionEntry(deathCertificate, causeOfDeathCondition);
+		}
+		
+		//TODO: Work with CauseOfDeathPathway and multiple cause of death conditions
+		CauseOfDeathPathway causeOfDeathPathway = new CauseOfDeathPathway();
+		causeOfDeathPathway.addEntry(new ListEntryComponent().setItem(new Reference(causeOfDeathCondition)));
+		CommonUtil.addBundleEntry(deathRecordDocument, causeOfDeathPathway);
+		CommonUtil.addSectionEntry(deathCertificate, causeOfDeathPathway);
+		
 		DeathDate deathDate = new DeathDateMapper().map(documentObject,"");
 		if(deathDate != null) {
 			deathDate.addPerformer(certifierReference);
